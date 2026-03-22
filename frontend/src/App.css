@@ -39,6 +39,7 @@
 }
 .todoContainer {
   align-self: center;
+  width: 70vw;
 }
 .tasksHeading {
   align-self: flex-start;
@@ -56,9 +57,9 @@
   justify-content: space-between;
   align-items: center;
   border-style: solid;
-  width: 70vw;
   border-radius: 10px;
   border-width: 1px;
+  width: 50vw;
   height: 30px;
   padding-left: 10px;
   padding-right: 10px;
