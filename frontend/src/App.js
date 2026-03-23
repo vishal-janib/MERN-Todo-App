@@ -41,7 +41,7 @@ function App() {
     await fetch(`https://mern-todo-app-5x6p.onrender.com/todos/${itemId}`, {
       method: "PUT",
       headers: {
-        "content-type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         isClicked: updatedBool,
