@@ -8,7 +8,9 @@ app.use(cors());
 app.use(express.json());
 
 mongoose
-  .connect("mongodb://localhost:27017/tododb")
+  .connect(
+    "mongodb+srv://vishaljanib_db_user:bRyQKKM8JMOQeBHx@cluster0.gxq5y0b.mongodb.net/tododb?retryWrites=true&w=majority",
+  )
   .then(() => {
     console.log("MongoDB Connected");
   })

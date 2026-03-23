@@ -6,7 +6,7 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   const fetchTodos = () => {
-    fetch("http://localhost:5000/todos")
+    fetch("https://mern-todo-app-5x6p.onrender.com/todos")
       .then((res) => res.json())
       .then((data) => setTodos(data));
   };
@@ -19,7 +19,7 @@ function App() {
     if (todo.text === "") {
       return alert("*Enter Your Todo");
     }
-    fetch("http://localhost:5000/todos", {
+    fetch("https://mern-todo-app-5x6p.onrender.com/todos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ function App() {
       each._id === itemId ? { ...each, isClicked: updatedBool } : each,
     );
     setTodos(upDateSetTodos);
-    await fetch(`http://localhost:5000/todos/${itemId}`, {
+    await fetch(`https://mern-todo-app-5x6p.onrender.com/todos/${itemId}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -54,13 +54,13 @@ function App() {
     const upDateTodoList = todos.filter((each) => each._id !== delId);
     setTodos(upDateTodoList);
 
-    await fetch(`http://localhost:5000/todos/${delId}`, {
+    await fetch(`https://mern-todo-app-5x6p.onrender.com/todos/${delId}`, {
       method: "DELETE",
     });
   };
 
   const deleteAll = async () => {
-    await fetch("http://localhost:5000/todos", {
+    await fetch("https://mern-todo-app-5x6p.onrender.com/todos", {
       method: "DELETE",
     });
     setTodos([]);
@@ -124,3 +124,6 @@ function App() {
 }
 
 export default App;
+
+// render live url
+// https://mern-todo-app-5x6p.onrender.com
