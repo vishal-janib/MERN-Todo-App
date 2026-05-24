@@ -1,14 +1,21 @@
 import { useState, useEffect } from "react";
+import { TailSpin } from "react-loader-spinner";
 import "./App.css";
 
 function App() {
   const [todo, setTodo] = useState({ text: "", isClicked: false });
   const [todos, setTodos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchTodos = () => {
+    setLoading(true);
+
     fetch("https://mern-todo-app-5x6p.onrender.com/todos")
       .then((res) => res.json())
-      .then((data) => setTodos(data));
+      .then((data) => {
+        setTodos(data);
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -86,32 +93,38 @@ function App() {
 
       <ul className="todoContainer">
         <h3 className="tasksHeading">Your Tasks</h3>
-        {todos.map((item) => (
-          <li className="eachListEl" key={item._id}>
-            <input
-              onChange={toggleCheckbox}
-              checked={item.isClicked}
-              id={item._id}
-              type="checkbox"
-              className="checkbox"
-            />
-            <div className="eachTodo">
-              <label
-                style={{
-                  textDecoration: item.isClicked ? "line-through" : "none",
-                }}
-                htmlFor={item._id}
-              >
-                {item.text}
-              </label>
-              <i
+        {loading ? (
+          <div className="loaderContainer">
+            <TailSpin height={50} width={50} />
+          </div>
+        ) : (
+          todos.map((item) => (
+            <li className="eachListEl" key={item._id}>
+              <input
+                onChange={toggleCheckbox}
+                checked={item.isClicked}
                 id={item._id}
-                onClick={deleteTodo}
-                className="fa-solid fa-trash"
-              ></i>
-            </div>
-          </li>
-        ))}
+                type="checkbox"
+                className="checkbox"
+              />
+              <div className="eachTodo">
+                <label
+                  style={{
+                    textDecoration: item.isClicked ? "line-through" : "none",
+                  }}
+                  htmlFor={item._id}
+                >
+                  {item.text}
+                </label>
+                <i
+                  id={item._id}
+                  onClick={deleteTodo}
+                  className="fa-solid fa-trash"
+                ></i>
+              </div>
+            </li>
+          ))
+        )}
       </ul>
 
       <div className="deleteAllCont">
